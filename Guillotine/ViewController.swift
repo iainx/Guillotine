@@ -99,8 +99,12 @@ class ViewController: NSViewController {
 
         do {
             try fileManager.createDirectoryAtPath(fullDirPath, withIntermediateDirectories: false, attributes: nil)
-        } catch let error {
+        } catch let error as NSError {
+            let dialog = NSAlert (error: error)
+            
             NSLog("Error creating directory path \(fullDirPath): \(error)")
+            
+            dialog.runModal()
         }
         
         for row in 0 ..< rows {
