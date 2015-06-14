@@ -732,9 +732,9 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                                 <connections>
-                                    <binding destination="XfG-lQ-9wD" name="minValue" keyPath="maxHeight" previousBinding="htv-hg-iZH" id="Ejs-Wz-ogp"/>
                                     <binding destination="XfG-lQ-9wD" name="maxValue" keyPath="maxHeight" id="htv-hg-iZH"/>
-                                    <binding destination="XfG-lQ-9wD" name="value" keyPath="sliceHeight" previousBinding="Ejs-Wz-ogp" id="CDf-n1-snj">
+                                    <binding destination="XfG-lQ-9wD" name="minValue" keyPath="minHeight" previousBinding="htv-hg-iZH" id="D1p-Oq-38P"/>
+                                    <binding destination="XfG-lQ-9wD" name="value" keyPath="sliceHeight" previousBinding="D1p-Oq-38P" id="GGT-QV-rQa">
                                         <dictionary key="options">
                                             <bool key="NSContinuouslyUpdatesValue" value="YES"/>
                                         </dictionary>
