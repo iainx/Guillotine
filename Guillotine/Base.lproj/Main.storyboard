@@ -732,8 +732,8 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                                 <connections>
-                                    <binding destination="XfG-lQ-9wD" name="maxValue" keyPath="maxHeight" id="htv-hg-iZH"/>
                                     <binding destination="XfG-lQ-9wD" name="minValue" keyPath="maxHeight" previousBinding="htv-hg-iZH" id="Ejs-Wz-ogp"/>
+                                    <binding destination="XfG-lQ-9wD" name="maxValue" keyPath="maxHeight" id="htv-hg-iZH"/>
                                     <binding destination="XfG-lQ-9wD" name="value" keyPath="sliceHeight" previousBinding="Ejs-Wz-ogp" id="CDf-n1-snj">
                                         <dictionary key="options">
                                             <bool key="NSContinuouslyUpdatesValue" value="YES"/>
@@ -799,7 +799,7 @@
                         <outlet property="heightStepper" destination="8cu-fe-CP5" id="XkM-hA-Rll"/>
                         <outlet property="heightTextField" destination="iiJ-5W-6lI" id="O58-Yu-wd0"/>
                         <outlet property="imageView" destination="uN9-KT-Dd5" id="zUG-y8-TNE"/>
-                        <outlet property="sliceButton" destination="9sL-4N-u7z" id="1gq-ih-2Wn"/>
+                        <outlet property="sliceButton" destination="9sL-4N-u7z" id="s8u-Je-feq"/>
                         <outlet property="widthStepper" destination="g6r-6n-HTp" id="1jF-pQ-j28"/>
                         <outlet property="widthTextField" destination="urd-Nk-nfd" id="gGi-HD-GiJ"/>
                     </connections>

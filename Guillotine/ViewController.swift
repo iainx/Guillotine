@@ -19,6 +19,7 @@ class ViewController: NSViewController {
     
     @IBOutlet weak var widthStepper: NSStepper!
     @IBOutlet weak var heightStepper: NSStepper!
+    
     private var imageContext = 0
     
     var sliceWidth = 64
@@ -55,6 +56,7 @@ class ViewController: NSViewController {
                 self.heightTextField.enabled = true
                 self.widthStepper.enabled = true
                 self.heightStepper.enabled = true
+                self.sliceButton.enabled = true
                 
                 maxWidth = Int (image.size.width)
                 maxHeight = Int (image.size.height)
