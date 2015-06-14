@@ -99,8 +99,8 @@ class ViewController: NSViewController {
 
         do {
             try fileManager.createDirectoryAtPath(fullDirPath, withIntermediateDirectories: false, attributes: nil)
-        } catch {
-            NSLog("Error creating directory path %@", fullDirPath)
+        } catch let error {
+            NSLog("Error creating directory path \(fullDirPath): \(error)")
         }
         
         for row in 0 ..< rows {
@@ -117,13 +117,13 @@ class ViewController: NSViewController {
                 
                 let url = NSURL.fileURLWithPath(newImagePath)
                 guard let imageDest = CGImageDestinationCreateWithURL(url, kUTTypePNG, 1, nil) else {
-                    NSLog("Error creating image dest for %@", newImagePath)
+                    NSLog("Error creating image dest for \(newImagePath)")
                     return
                 }
                 
                 CGImageDestinationAddImage(imageDest, newCGImage, nil)
                 if !CGImageDestinationFinalize(imageDest) {
-                    NSLog("Error writing image for %@", newImagePath)
+                    NSLog("Error writing image for \(newImagePath)")
                 }
             }
         }
