@@ -678,7 +678,7 @@
                             </imageView>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="9sL-4N-u7z">
                                 <rect key="frame" x="453" y="13" width="82" height="32"/>
-                                <buttonCell key="cell" type="push" title="Slice It" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="LEx-zy-lKN">
+                                <buttonCell key="cell" type="push" title="Slice It" bezelStyle="rounded" alignment="center" enabled="NO" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="LEx-zy-lKN">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
@@ -704,14 +704,16 @@
                             </textField>
                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="urd-Nk-nfd">
                                 <rect key="frame" x="75" y="47" width="96" height="22"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" title="64" drawsBackground="YES" id="Asx-nS-wh5">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" enabled="NO" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" title="64" drawsBackground="YES" id="Asx-nS-wh5">
                                     <numberFormatter key="formatter" formatterBehavior="default10_4" usesGroupingSeparator="NO" groupingSize="0" minimumIntegerDigits="0" maximumIntegerDigits="42" id="0XT-KV-17R"/>
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                                 <connections>
-                                    <binding destination="XfG-lQ-9wD" name="value" keyPath="sliceWidth" id="Byw-Ul-6gm">
+                                    <binding destination="XfG-lQ-9wD" name="maxValue" keyPath="maxWidth" id="50E-6q-4jY"/>
+                                    <binding destination="XfG-lQ-9wD" name="minValue" keyPath="minWidth" previousBinding="50E-6q-4jY" id="Q5i-bd-BRQ"/>
+                                    <binding destination="XfG-lQ-9wD" name="value" keyPath="sliceWidth" previousBinding="Q5i-bd-BRQ" id="nu2-Rx-p40">
                                         <dictionary key="options">
                                             <bool key="NSContinuouslyUpdatesValue" value="YES"/>
                                         </dictionary>
@@ -723,14 +725,16 @@
                                 <constraints>
                                     <constraint firstAttribute="width" constant="96" id="ID4-Bt-nZM"/>
                                 </constraints>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" title="64" drawsBackground="YES" id="SVu-Bf-0h0">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" enabled="NO" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" title="64" drawsBackground="YES" id="SVu-Bf-0h0">
                                     <numberFormatter key="formatter" formatterBehavior="default10_4" usesGroupingSeparator="NO" groupingSize="0" minimumIntegerDigits="0" maximumIntegerDigits="42" id="yuS-yF-dtS"/>
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                                 <connections>
-                                    <binding destination="XfG-lQ-9wD" name="value" keyPath="sliceHeight" id="vFS-97-I25">
+                                    <binding destination="XfG-lQ-9wD" name="maxValue" keyPath="maxHeight" id="htv-hg-iZH"/>
+                                    <binding destination="XfG-lQ-9wD" name="minValue" keyPath="maxHeight" previousBinding="htv-hg-iZH" id="Ejs-Wz-ogp"/>
+                                    <binding destination="XfG-lQ-9wD" name="value" keyPath="sliceHeight" previousBinding="Ejs-Wz-ogp" id="CDf-n1-snj">
                                         <dictionary key="options">
                                             <bool key="NSContinuouslyUpdatesValue" value="YES"/>
                                         </dictionary>
@@ -747,16 +751,20 @@
                             </textField>
                             <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="g6r-6n-HTp">
                                 <rect key="frame" x="169" y="44" width="19" height="27"/>
-                                <stepperCell key="cell" continuous="YES" alignment="left" maxValue="100" id="gZI-Vp-nPd"/>
+                                <stepperCell key="cell" continuous="YES" enabled="NO" alignment="left" maxValue="100" id="gZI-Vp-nPd"/>
                                 <connections>
-                                    <binding destination="XfG-lQ-9wD" name="value" keyPath="sliceWidth" id="3si-nK-KBN"/>
+                                    <binding destination="XfG-lQ-9wD" name="maxValue" keyPath="maxWidth" id="ezM-d7-AVV"/>
+                                    <binding destination="XfG-lQ-9wD" name="minValue" keyPath="minWidth" previousBinding="ezM-d7-AVV" id="cmX-30-LV0"/>
+                                    <binding destination="XfG-lQ-9wD" name="value" keyPath="sliceWidth" previousBinding="cmX-30-LV0" id="vZn-3G-2Ls"/>
                                 </connections>
                             </stepper>
                             <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="8cu-fe-CP5">
                                 <rect key="frame" x="169" y="17" width="19" height="27"/>
-                                <stepperCell key="cell" continuous="YES" alignment="left" maxValue="100" id="zwh-EF-NSw"/>
+                                <stepperCell key="cell" continuous="YES" enabled="NO" alignment="left" maxValue="100" id="zwh-EF-NSw"/>
                                 <connections>
-                                    <binding destination="XfG-lQ-9wD" name="value" keyPath="sliceHeight" id="G95-nS-yGn"/>
+                                    <binding destination="XfG-lQ-9wD" name="maxValue" keyPath="maxHeight" id="kpg-jr-9gX"/>
+                                    <binding destination="XfG-lQ-9wD" name="minValue" keyPath="minHeight" previousBinding="kpg-jr-9gX" id="7iT-bw-6OQ"/>
+                                    <binding destination="XfG-lQ-9wD" name="value" keyPath="sliceHeight" previousBinding="7iT-bw-6OQ" id="bZe-MD-Sfx"/>
                                 </connections>
                             </stepper>
                         </subviews>
@@ -788,9 +796,11 @@
                     </view>
                     <connections>
                         <outlet property="dropLabel" destination="j3Z-wn-PrY" id="KOK-SF-Wqd"/>
+                        <outlet property="heightStepper" destination="8cu-fe-CP5" id="XkM-hA-Rll"/>
                         <outlet property="heightTextField" destination="iiJ-5W-6lI" id="O58-Yu-wd0"/>
                         <outlet property="imageView" destination="uN9-KT-Dd5" id="zUG-y8-TNE"/>
                         <outlet property="sliceButton" destination="9sL-4N-u7z" id="1gq-ih-2Wn"/>
+                        <outlet property="widthStepper" destination="g6r-6n-HTp" id="1jF-pQ-j28"/>
                         <outlet property="widthTextField" destination="urd-Nk-nfd" id="gGi-HD-GiJ"/>
                     </connections>
                 </viewController>

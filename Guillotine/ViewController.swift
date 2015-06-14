@@ -17,14 +17,26 @@ class ViewController: NSViewController {
     @IBOutlet weak var dropLabel: NSTextField!
     @IBOutlet weak var sliceButton: NSButton!
     
+    @IBOutlet weak var widthStepper: NSStepper!
+    @IBOutlet weak var heightStepper: NSStepper!
     private var imageContext = 0
     
     var sliceWidth = 64
     var sliceHeight = 64
+
+    var minWidth = 1
+    var minHeight = 1
+    
+    // Once an image is loaded this will be updated
+    dynamic var maxWidth = 64
+    dynamic var maxHeight = 64
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        widthStepper.enabled = false
+        heightStepper.enabled = false
+        
         // Do any additional setup after loading the view.
         imageView.addObserver(self, forKeyPath: "image", options: .New, context: &imageContext)
     }
@@ -37,8 +49,15 @@ class ViewController: NSViewController {
         
         // Hide the drop label when we have an image to slice
         if keyPath == "image" {
-            if let _ = imageView.image {
-               self.dropLabel.hidden = true
+            if let image = imageView.image {
+                self.dropLabel.hidden = true
+                self.widthTextField.enabled = true
+                self.heightTextField.enabled = true
+                self.widthStepper.enabled = true
+                self.heightStepper.enabled = true
+                
+                maxWidth = Int (image.size.width)
+                maxHeight = Int (image.size.height)
             }
         }
     }
