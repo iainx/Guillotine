@@ -20,6 +20,7 @@ class ViewController: NSViewController {
     @IBOutlet weak var widthStepper: NSStepper!
     @IBOutlet weak var heightStepper: NSStepper!
     @IBOutlet weak var summaryLabel: NSTextField!
+    @IBOutlet weak var outputLabel: NSTextField!
     
     private var imageContext = 0
     
@@ -80,8 +81,18 @@ class ViewController: NSViewController {
         }
     }
     
+    func generateAtlasPath (imagePath: String) -> String {
+        let imageDir = imagePath.stringByDeletingLastPathComponent
+        let basename = imagePath.lastPathComponent.stringByDeletingPathExtension
+        let dirFilename = basename + ".atlas"
+        
+        let fullDirPath = String.pathWithComponents([imageDir, dirFilename])
+        return fullDirPath
+    }
+    
     func updateSummary () {
-        guard let image = imageView.image else {
+        guard let image = imageView.image,
+              let imagePath = imageView.droppedImageFilePath else {
             return
         }
         
@@ -89,6 +100,7 @@ class ViewController: NSViewController {
         let columns = Int(image.size.width) / sliceWidth
         
         summaryLabel.stringValue = "Creating \(rows * columns) textures"
+        outputLabel.stringValue = "Output file: \(generateAtlasPath(imagePath.stringByAbbreviatingWithTildeInPath))"
     }
     
     override var representedObject: AnyObject? {
@@ -113,13 +125,9 @@ class ViewController: NSViewController {
         let columns = Int (image.size.width) / sliceWidth
 
         let fileManager = NSFileManager.defaultManager()
-        
-        let imageDir = imagePath.stringByDeletingLastPathComponent
+        let fullDirPath = generateAtlasPath(imagePath)
         let basename = imagePath.lastPathComponent.stringByDeletingPathExtension
-        let dirFilename = basename + ".atlas"
         
-        let fullDirPath = String.pathWithComponents([imageDir, dirFilename])
-
         do {
             try fileManager.createDirectoryAtPath(fullDirPath, withIntermediateDirectories: false, attributes: nil)
         } catch let error as NSError {

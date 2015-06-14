@@ -768,8 +768,16 @@
                                 </connections>
                             </stepper>
                             <textField horizontalHuggingPriority="249" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Cq1-Wl-Uvv">
-                                <rect key="frame" x="191" y="49" width="271" height="17"/>
+                                <rect key="frame" x="191" y="49" width="262" height="17"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" id="UFd-Zh-YVg">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="249" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Bgk-BG-Lxa">
+                                <rect key="frame" x="191" y="23" width="262" height="17"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" id="ucZ-2j-pet">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -782,9 +790,11 @@
                             <constraint firstItem="LGs-Go-Z9h" firstAttribute="top" secondItem="IHn-k5-Ats" secondAttribute="bottom" constant="9" id="5vn-cb-zpj"/>
                             <constraint firstItem="8cu-fe-CP5" firstAttribute="top" secondItem="iiJ-5W-6lI" secondAttribute="top" id="92D-bu-edL"/>
                             <constraint firstAttribute="bottom" secondItem="iiJ-5W-6lI" secondAttribute="bottom" constant="20" id="A2B-cP-BAQ"/>
+                            <constraint firstItem="9sL-4N-u7z" firstAttribute="leading" secondItem="Bgk-BG-Lxa" secondAttribute="trailing" constant="8" id="BBZ-uA-aPg"/>
                             <constraint firstItem="g6r-6n-HTp" firstAttribute="bottom" secondItem="urd-Nk-nfd" secondAttribute="bottom" id="DQC-cw-bKM"/>
                             <constraint firstItem="uN9-KT-Dd5" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" id="Eyn-ae-GEn"/>
                             <constraint firstItem="IHn-k5-Ats" firstAttribute="top" secondItem="uN9-KT-Dd5" secondAttribute="bottom" constant="9" id="Fum-g9-ylC"/>
+                            <constraint firstItem="Bgk-BG-Lxa" firstAttribute="trailing" secondItem="Cq1-Wl-Uvv" secondAttribute="trailing" id="IHi-3o-rTP"/>
                             <constraint firstItem="j3Z-wn-PrY" firstAttribute="centerX" secondItem="uN9-KT-Dd5" secondAttribute="centerX" id="IuO-u7-uiY"/>
                             <constraint firstItem="Cq1-Wl-Uvv" firstAttribute="leading" secondItem="g6r-6n-HTp" secondAttribute="trailing" constant="8" id="Ju0-uf-1z3"/>
                             <constraint firstItem="g6r-6n-HTp" firstAttribute="leading" secondItem="urd-Nk-nfd" secondAttribute="trailing" constant="1" id="JvM-x6-MyV"/>
@@ -792,7 +802,6 @@
                             <constraint firstItem="iiJ-5W-6lI" firstAttribute="top" secondItem="urd-Nk-nfd" secondAttribute="bottom" constant="5" id="MRF-ex-VVl"/>
                             <constraint firstItem="8cu-fe-CP5" firstAttribute="leading" secondItem="iiJ-5W-6lI" secondAttribute="trailing" constant="1" id="Oer-9o-shZ"/>
                             <constraint firstItem="Cq1-Wl-Uvv" firstAttribute="top" secondItem="uN9-KT-Dd5" secondAttribute="bottom" constant="9" id="Q9H-Fw-iXg"/>
-                            <constraint firstAttribute="trailing" secondItem="Cq1-Wl-Uvv" secondAttribute="trailing" constant="89" id="Tdh-zg-xIO"/>
                             <constraint firstAttribute="bottom" secondItem="9sL-4N-u7z" secondAttribute="bottom" constant="20" id="UHd-bs-AxK"/>
                             <constraint firstItem="iiJ-5W-6lI" firstAttribute="leading" secondItem="LGs-Go-Z9h" secondAttribute="trailing" constant="8" id="VS7-Wx-PJR"/>
                             <constraint firstItem="urd-Nk-nfd" firstAttribute="leading" secondItem="iiJ-5W-6lI" secondAttribute="leading" id="XLN-71-jHa"/>
@@ -803,6 +812,9 @@
                             <constraint firstItem="IHn-k5-Ats" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="27" id="g21-SF-tt3"/>
                             <constraint firstItem="8cu-fe-CP5" firstAttribute="bottom" secondItem="iiJ-5W-6lI" secondAttribute="bottom" id="gb8-ao-hdy"/>
                             <constraint firstItem="uN9-KT-Dd5" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="20" id="hIY-fu-PgG"/>
+                            <constraint firstItem="Bgk-BG-Lxa" firstAttribute="top" secondItem="Cq1-Wl-Uvv" secondAttribute="bottom" constant="9" id="hY1-fI-veD"/>
+                            <constraint firstItem="Bgk-BG-Lxa" firstAttribute="leading" secondItem="8cu-fe-CP5" secondAttribute="trailing" constant="8" id="vfV-X9-5lJ"/>
+                            <constraint firstAttribute="bottom" secondItem="Bgk-BG-Lxa" secondAttribute="bottom" constant="23" id="wLN-h0-ExN"/>
                         </constraints>
                     </view>
                     <connections>
@@ -810,6 +822,7 @@
                         <outlet property="heightStepper" destination="8cu-fe-CP5" id="XkM-hA-Rll"/>
                         <outlet property="heightTextField" destination="iiJ-5W-6lI" id="O58-Yu-wd0"/>
                         <outlet property="imageView" destination="uN9-KT-Dd5" id="zUG-y8-TNE"/>
+                        <outlet property="outputLabel" destination="Bgk-BG-Lxa" id="a9M-vz-jx0"/>
                         <outlet property="sliceButton" destination="9sL-4N-u7z" id="s8u-Je-feq"/>
                         <outlet property="summaryLabel" destination="Cq1-Wl-Uvv" id="qIY-vX-s05"/>
                         <outlet property="widthStepper" destination="g6r-6n-HTp" id="1jF-pQ-j28"/>
