@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AE427E301B2D99DB00B26753 /* FVImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE427E2F1B2D99DB00B26753 /* FVImageView.swift */; };
 		AEE115B51B2CEFC80067415B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE115B41B2CEFC80067415B /* AppDelegate.swift */; };
 		AEE115B71B2CEFC80067415B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE115B61B2CEFC80067415B /* ViewController.swift */; };
 		AEE115B91B2CEFC80067415B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AEE115B81B2CEFC80067415B /* Assets.xcassets */; };
@@ -33,6 +34,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		AE427E2F1B2D99DB00B26753 /* FVImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FVImageView.swift; sourceTree = "<group>"; };
 		AEE115B11B2CEFC80067415B /* Guillotine.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Guillotine.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AEE115B41B2CEFC80067415B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AEE115B61B2CEFC80067415B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -97,6 +99,7 @@
 			children = (
 				AEE115B41B2CEFC80067415B /* AppDelegate.swift */,
 				AEE115B61B2CEFC80067415B /* ViewController.swift */,
+				AE427E2F1B2D99DB00B26753 /* FVImageView.swift */,
 				AEE115B81B2CEFC80067415B /* Assets.xcassets */,
 				AEE115BA1B2CEFC80067415B /* Main.storyboard */,
 				AEE115BD1B2CEFC80067415B /* Info.plist */,
@@ -253,6 +256,7 @@
 			files = (
 				AEE115B71B2CEFC80067415B /* ViewController.swift in Sources */,
 				AEE115B51B2CEFC80067415B /* AppDelegate.swift in Sources */,
+				AE427E301B2D99DB00B26753 /* FVImageView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -474,6 +478,7 @@
 				AEE115D81B2CEFC90067415B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		AEE115D91B2CEFC90067415B /* Build configuration list for PBXNativeTarget "GuillotineTests" */ = {
 			isa = XCConfigurationList;
@@ -482,6 +487,7 @@
 				AEE115DB1B2CEFC90067415B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		AEE115DC1B2CEFC90067415B /* Build configuration list for PBXNativeTarget "GuillotineUITests" */ = {
 			isa = XCConfigurationList;
@@ -490,6 +496,7 @@
 				AEE115DE1B2CEFC90067415B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
