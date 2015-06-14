@@ -75,11 +75,8 @@ class ViewController: NSViewController {
     }
 
     @IBAction func sliceIt(sender: AnyObject) {
-        guard let image = imageView.image else {
-            return
-        }
-        
-        guard let imagePath = imageView.droppedImageFilePath else {
+        guard let image = imageView.image,
+              let imagePath = imageView.droppedImageFilePath else {
             return
         }
         
@@ -110,11 +107,8 @@ class ViewController: NSViewController {
             for column in 0 ..< columns {
                 let imageRect = NSRect (x: column * sliceWidth, y: row * sliceHeight, width: sliceWidth, height: sliceHeight)
                 
-                guard let cgImage = image.CGImageForProposedRect(nil, context: nil, hints: nil)?.takeUnretainedValue() else {
-                    return
-                }
-                
-                guard let newCGImage = CGImageCreateWithImageInRect(cgImage, imageRect) else {
+                guard let cgImage = image.CGImageForProposedRect(nil, context: nil, hints: nil)?.takeUnretainedValue(),
+                      let newCGImage = CGImageCreateWithImageInRect(cgImage, imageRect)else {
                     return
                 }
                 
