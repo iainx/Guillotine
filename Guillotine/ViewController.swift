@@ -19,11 +19,21 @@ class ViewController: NSViewController {
     
     @IBOutlet weak var widthStepper: NSStepper!
     @IBOutlet weak var heightStepper: NSStepper!
+    @IBOutlet weak var summaryLabel: NSTextField!
     
     private var imageContext = 0
     
-    var sliceWidth = 64
-    var sliceHeight = 64
+    var sliceWidth = 64 {
+        didSet {
+            updateSummary ()
+        }
+    }
+    
+    var sliceHeight = 64 {
+        didSet {
+            updateSummary ()
+        }
+    }
 
     var minWidth = 1
     var minHeight = 1
@@ -31,6 +41,10 @@ class ViewController: NSViewController {
     // Once an image is loaded this will be updated
     dynamic var maxWidth = 64
     dynamic var maxHeight = 64
+    
+    deinit {
+        imageView.removeObserver(self, forKeyPath: "image", context: &imageContext)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,12 +74,21 @@ class ViewController: NSViewController {
                 
                 maxWidth = Int (image.size.width)
                 maxHeight = Int (image.size.height)
+                
+                updateSummary()
             }
         }
     }
     
-    deinit {
-        imageView.removeObserver(self, forKeyPath: "image", context: &imageContext)
+    func updateSummary () {
+        guard let image = imageView.image else {
+            return
+        }
+        
+        let rows = Int(image.size.height) / sliceHeight
+        let columns = Int(image.size.width) / sliceWidth
+        
+        summaryLabel.stringValue = "Creating \(rows * columns) textures"
     }
     
     override var representedObject: AnyObject? {
