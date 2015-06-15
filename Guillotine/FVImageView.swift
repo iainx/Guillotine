@@ -8,6 +8,7 @@
 
 import Cocoa
 
+/// An NSImageView subclass which stores the filename of the image dropped onto it
 class FVImageView: NSImageView {
 
     var droppedImageFilePath: String? = nil
