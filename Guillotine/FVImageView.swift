@@ -21,33 +21,30 @@ class FVImageView: NSImageView {
     override func performDragOperation(sender: NSDraggingInfo) -> Bool {
         let acceptsDrag = super.performDragOperation(sender)
         
-        NSLog ("Dragged")
         if acceptsDrag {
             let pboard = sender.draggingPasteboard()
             guard let plist = pboard.stringForType(NSFilenamesPboardType) else {
-                return acceptsDrag
+                return false
             }
             
             guard let plistData = plist.dataUsingEncoding(NSUTF8StringEncoding) else {
-                return acceptsDrag
+                return false
             }
             
-            NSLog("Got plist")
             do {
                 let files = try NSPropertyListSerialization.propertyListWithData(plistData, options: NSPropertyListReadOptions.Immutable, format: nil)
-                NSLog("Files: %@ - %d", files.description, files.count)
                 
                 if files.count == 1 {
                     droppedImageFilePath = String (files[0])
                 } else {
                     droppedImageFilePath = nil;
+                    return false
                 }
             } catch {
-                return acceptsDrag
+                return false
             }
         }
         
-        NSLog("%@", droppedImageFilePath!)
         return acceptsDrag
     }
 }
