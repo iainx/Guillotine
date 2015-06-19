@@ -34,6 +34,9 @@ class FVImageView: NSImageView {
         let rows = (size.height / slices.height)
         
         if let context = NSGraphicsContext.currentContext()?.CGContext {
+            
+            CGContextSetStrokeColorWithColor(context, NSColor.lightGrayColor().CGColor)
+            
             for row in 0 ..< Int(rows) {
                 let y = size.height - (CGFloat(row) * slices.height)
                 CGContextMoveToPoint(context, 0.0, y)
