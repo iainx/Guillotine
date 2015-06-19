@@ -26,13 +26,16 @@ class ViewController: NSViewController {
     
     var sliceWidth = 64 {
         didSet {
+            NSLog("Width set")
             updateSummary ()
+            updateSliceGrid()
         }
     }
     
     var sliceHeight = 64 {
         didSet {
             updateSummary ()
+            updateSliceGrid()
         }
     }
 
@@ -57,6 +60,14 @@ class ViewController: NSViewController {
         imageView.addObserver(self, forKeyPath: "image", options: .New, context: &imageContext)
     }
 
+    override func setNilValueForKey(key: String) {
+        if key == "sliceWidth" || key == "sliceHeight" {
+            return
+        }
+
+        super.setNilValueForKey(key)
+    }
+    
     override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [NSObject : AnyObject]?, context: UnsafeMutablePointer<Void>) {
         if context != &imageContext {
             super.observeValueForKeyPath(keyPath, ofObject: object, change: change, context: context)
@@ -77,6 +88,7 @@ class ViewController: NSViewController {
                 maxHeight = Int (image.size.height)
                 
                 updateSummary()
+                updateSliceGrid()
             }
         }
     }
@@ -88,6 +100,10 @@ class ViewController: NSViewController {
         
         let fullDirPath = String.pathWithComponents([imageDir, dirFilename])
         return fullDirPath
+    }
+    
+    func updateSliceGrid () {
+        imageView.sliceSize = CGSize (width: sliceWidth, height: sliceHeight)
     }
     
     func updateSummary () {
