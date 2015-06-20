@@ -31,13 +31,13 @@ class FVImageView: NSImageView {
         
         NSColor.lightGrayColor().setStroke()
         
-        for row in 1 ..< Int(rows) {
+        for row in 1..<Int(rows) {
             let y = size.height - (CGFloat(row) * slices.height)
             NSBezierPath.strokeLineFromPoint(NSPoint(x: 0.0, y: y), toPoint: NSPoint (x: size.width, y: y))
         }
         
-        for column in 1 ..< Int(columns) {
-            let x = size.width - (CGFloat(column) * slices.width)
+        for column in 1...Int(columns) {
+            let x = (CGFloat(column) * slices.width)
             NSBezierPath.strokeLineFromPoint(NSPoint(x: x, y: 0.0), toPoint: NSPoint (x: x, y: size.height))
         }
     }
