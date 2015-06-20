@@ -45,9 +45,7 @@ class ViewController: NSViewController {
     
     var imageFilename: String?
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
+    override func awakeFromNib() {
         widthStepper.enabled = false
         heightStepper.enabled = false
         

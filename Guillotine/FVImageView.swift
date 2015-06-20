@@ -22,7 +22,6 @@ class FVImageView: NSImageView {
     override func drawRect(dirtyRect: NSRect) {
         super.drawRect(dirtyRect)
 
-        // Drawing code here.
         guard let slices = sliceSize else {
             return
         }
@@ -31,23 +30,16 @@ class FVImageView: NSImageView {
         let columns = (size.width / slices.width)
         let rows = (size.height / slices.height)
         
-        if let context = NSGraphicsContext.currentContext()?.CGContext {
-            
-            CGContextSetStrokeColorWithColor(context, NSColor.lightGrayColor().CGColor)
-            
-            for row in 0 ..< Int(rows) {
-                let y = size.height - (CGFloat(row) * slices.height)
-                CGContextMoveToPoint(context, 0.0, y)
-                CGContextAddLineToPoint(context, size.width, y)
-                CGContextStrokePath(context)
-            }
-            
-            for column in 0 ..< Int(columns) {
-                let x = CGFloat(column) * slices.width
-                CGContextMoveToPoint(context, x, 0.0)
-                CGContextAddLineToPoint(context, x, size.height)
-                CGContextStrokePath(context)
-            }
+        NSColor.lightGrayColor().setStroke()
+        
+        for row in 1 ..< Int(rows) {
+            let y = size.height - (CGFloat(row) * slices.height)
+            NSBezierPath.strokeLineFromPoint(NSPoint(x: 0.0, y: y), toPoint: NSPoint (x: size.width, y: y))
+        }
+        
+        for column in 1 ..< Int(columns) {
+            let x = size.width - (CGFloat(column) * slices.width)
+            NSBezierPath.strokeLineFromPoint(NSPoint(x: x, y: 0.0), toPoint: NSPoint (x: x, y: size.height))
         }
     }
 }
