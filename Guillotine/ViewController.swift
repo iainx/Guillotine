@@ -22,11 +22,8 @@ class ViewController: NSViewController {
     @IBOutlet weak var summaryLabel: NSTextField!
     @IBOutlet weak var outputLabel: NSTextField!
     
-    private var imageContext = 0
-    
     var sliceWidth = 64 {
         didSet {
-            NSLog("Width set")
             updateSummary ()
             updateSliceGrid()
         }
@@ -46,9 +43,7 @@ class ViewController: NSViewController {
     dynamic var maxWidth = 64
     dynamic var maxHeight = 64
     
-    deinit {
-        imageView.removeObserver(self, forKeyPath: "image", context: &imageContext)
-    }
+    var imageFilename: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,8 +51,7 @@ class ViewController: NSViewController {
         widthStepper.enabled = false
         heightStepper.enabled = false
         
-        // Do any additional setup after loading the view.
-        imageView.addObserver(self, forKeyPath: "image", options: .New, context: &imageContext)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "imageDropped:", name: kNewImageDroppedNotification, object: nil)
     }
 
     override func setNilValueForKey(key: String) {
@@ -68,29 +62,27 @@ class ViewController: NSViewController {
         super.setNilValueForKey(key)
     }
     
-    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [NSObject : AnyObject]?, context: UnsafeMutablePointer<Void>) {
-        if context != &imageContext {
-            super.observeValueForKeyPath(keyPath, ofObject: object, change: change, context: context)
+    func imageDropped (note: NSNotification) {
+        guard let imageFile = note.object as? String,
+              let image = NSImage (contentsOfFile: imageFile) else {
             return
         }
+
+        imageView.image = image
+        imageFilename = imageFile
+
+        self.dropLabel.hidden = true
+        self.widthTextField.enabled = true
+        self.heightTextField.enabled = true
+        self.widthStepper.enabled = true
+        self.heightStepper.enabled = true
+        self.sliceButton.enabled = true
         
-        // Hide the drop label when we have an image to slice
-        if keyPath == "image" {
-            if let image = imageView.image {
-                self.dropLabel.hidden = true
-                self.widthTextField.enabled = true
-                self.heightTextField.enabled = true
-                self.widthStepper.enabled = true
-                self.heightStepper.enabled = true
-                self.sliceButton.enabled = true
-                
-                maxWidth = Int (image.size.width)
-                maxHeight = Int (image.size.height)
-                
-                updateSummary()
-                updateSliceGrid()
-            }
-        }
+        maxWidth = Int (image.size.width)
+        maxHeight = Int (image.size.height)
+        
+        updateSummary()
+        updateSliceGrid()
     }
     
     func generateAtlasPath (imagePath: String) -> String {
@@ -108,7 +100,7 @@ class ViewController: NSViewController {
     
     func updateSummary () {
         guard let image = imageView.image,
-              let imagePath = imageView.droppedImageFilePath else {
+              let imagePath = imageFilename else {
             return
         }
         
@@ -127,7 +119,7 @@ class ViewController: NSViewController {
 
     @IBAction func sliceIt(sender: AnyObject) {
         guard let image = imageView.image,
-              let imagePath = imageView.droppedImageFilePath else {
+              let imagePath = imageFilename else {
             return
         }
         

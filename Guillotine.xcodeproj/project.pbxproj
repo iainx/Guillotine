@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		AE427E301B2D99DB00B26753 /* FVImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE427E2F1B2D99DB00B26753 /* FVImageView.swift */; };
+		AE697FC71B34E41D0077BA00 /* FVDragWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE697FC61B34E41D0077BA00 /* FVDragWindow.swift */; };
+		AE697FC91B34EA440077BA00 /* NSNotificationCenterKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE697FC81B34EA440077BA00 /* NSNotificationCenterKeys.swift */; };
 		AEE115B51B2CEFC80067415B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE115B41B2CEFC80067415B /* AppDelegate.swift */; };
 		AEE115B71B2CEFC80067415B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE115B61B2CEFC80067415B /* ViewController.swift */; };
 		AEE115B91B2CEFC80067415B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AEE115B81B2CEFC80067415B /* Assets.xcassets */; };
@@ -35,6 +37,8 @@
 
 /* Begin PBXFileReference section */
 		AE427E2F1B2D99DB00B26753 /* FVImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FVImageView.swift; sourceTree = "<group>"; };
+		AE697FC61B34E41D0077BA00 /* FVDragWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FVDragWindow.swift; sourceTree = "<group>"; };
+		AE697FC81B34EA440077BA00 /* NSNotificationCenterKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSNotificationCenterKeys.swift; sourceTree = "<group>"; };
 		AEE115B11B2CEFC80067415B /* Guillotine.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Guillotine.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AEE115B41B2CEFC80067415B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AEE115B61B2CEFC80067415B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -100,6 +104,8 @@
 				AEE115B41B2CEFC80067415B /* AppDelegate.swift */,
 				AEE115B61B2CEFC80067415B /* ViewController.swift */,
 				AE427E2F1B2D99DB00B26753 /* FVImageView.swift */,
+				AE697FC61B34E41D0077BA00 /* FVDragWindow.swift */,
+				AE697FC81B34EA440077BA00 /* NSNotificationCenterKeys.swift */,
 				AEE115B81B2CEFC80067415B /* Assets.xcassets */,
 				AEE115BA1B2CEFC80067415B /* Main.storyboard */,
 				AEE115BD1B2CEFC80067415B /* Info.plist */,
@@ -256,8 +262,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				AEE115B71B2CEFC80067415B /* ViewController.swift in Sources */,
+				AE697FC91B34EA440077BA00 /* NSNotificationCenterKeys.swift in Sources */,
 				AEE115B51B2CEFC80067415B /* AppDelegate.swift in Sources */,
 				AE427E301B2D99DB00B26753 /* FVImageView.swift in Sources */,
+				AE697FC71B34E41D0077BA00 /* FVDragWindow.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

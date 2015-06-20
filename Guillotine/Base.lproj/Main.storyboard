@@ -115,7 +115,7 @@
         <scene sceneID="R2V-B0-nI4">
             <objects>
                 <windowController showSeguePresentationStyle="single" id="B8D-0N-5wS" sceneMemberID="viewController">
-                    <window key="window" title="Guillotine" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="IQv-IB-iLA">
+                    <window key="window" title="Guillotine" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="IQv-IB-iLA" customClass="FVDragWindow" customModule="Guillotine" customModuleProvider="target">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="196" y="240" width="480" height="270"/>
@@ -137,10 +137,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="549" height="418"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <imageView focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="uN9-KT-Dd5" customClass="FVImageView" customModule="Guillotine" customModuleProvider="target">
-                                <rect key="frame" x="17" y="72" width="515" height="329"/>
-                                <imageCell key="cell" selectable="YES" editable="YES" refusesFirstResponder="YES" focusRingType="none" alignment="left" imageScaling="proportionallyDown" imageFrameStyle="grayBezel" id="BCy-uB-e6X"/>
-                            </imageView>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="9sL-4N-u7z">
                                 <rect key="frame" x="453" y="13" width="82" height="32"/>
                                 <buttonCell key="cell" type="push" title="Slice It" bezelStyle="rounded" alignment="center" enabled="NO" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="LEx-zy-lKN">
@@ -242,42 +238,62 @@
                             </textField>
                             <textField horizontalHuggingPriority="249" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Bgk-BG-Lxa">
                                 <rect key="frame" x="191" y="23" width="262" height="17"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" id="ucZ-2j-pet">
+                                <textFieldCell key="cell" lineBreakMode="truncatingMiddle" sendsActionOnEndEditing="YES" id="ucZ-2j-pet">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
+                            <scrollView horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P4H-QK-QxV">
+                                <rect key="frame" x="16" y="71" width="517" height="331"/>
+                                <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="r2d-0A-hQs">
+                                    <rect key="frame" x="1" y="1" width="181" height="94"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <imageView focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uN9-KT-Dd5" customClass="FVImageView" customModule="Guillotine" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="0.0" width="515" height="329"/>
+                                            <imageCell key="cell" selectable="YES" refusesFirstResponder="YES" focusRingType="none" alignment="left" id="BCy-uB-e6X"/>
+                                        </imageView>
+                                    </subviews>
+                                </clipView>
+                                <scroller key="horizontalScroller" verticalHuggingPriority="750" horizontal="YES" id="So3-M8-yqy">
+                                    <rect key="frame" x="1" y="314" width="515" height="16"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </scroller>
+                                <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="2W2-2e-b4g">
+                                    <rect key="frame" x="500" y="1" width="16" height="329"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </scroller>
+                            </scrollView>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="urd-Nk-nfd" firstAttribute="top" secondItem="uN9-KT-Dd5" secondAttribute="bottom" constant="6" id="0NR-sT-0tk"/>
+                            <constraint firstItem="j3Z-wn-PrY" firstAttribute="centerY" secondItem="P4H-QK-QxV" secondAttribute="centerY" id="2ah-lw-56J"/>
                             <constraint firstAttribute="trailing" secondItem="9sL-4N-u7z" secondAttribute="trailing" constant="20" id="4lk-Gp-4oN"/>
                             <constraint firstItem="LGs-Go-Z9h" firstAttribute="top" secondItem="IHn-k5-Ats" secondAttribute="bottom" constant="9" id="5vn-cb-zpj"/>
                             <constraint firstItem="8cu-fe-CP5" firstAttribute="top" secondItem="iiJ-5W-6lI" secondAttribute="top" id="92D-bu-edL"/>
                             <constraint firstAttribute="bottom" secondItem="iiJ-5W-6lI" secondAttribute="bottom" constant="20" id="A2B-cP-BAQ"/>
                             <constraint firstItem="9sL-4N-u7z" firstAttribute="leading" secondItem="Bgk-BG-Lxa" secondAttribute="trailing" constant="8" id="BBZ-uA-aPg"/>
                             <constraint firstItem="g6r-6n-HTp" firstAttribute="bottom" secondItem="urd-Nk-nfd" secondAttribute="bottom" id="DQC-cw-bKM"/>
-                            <constraint firstItem="uN9-KT-Dd5" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" id="Eyn-ae-GEn"/>
-                            <constraint firstItem="IHn-k5-Ats" firstAttribute="top" secondItem="uN9-KT-Dd5" secondAttribute="bottom" constant="9" id="Fum-g9-ylC"/>
                             <constraint firstItem="Bgk-BG-Lxa" firstAttribute="trailing" secondItem="Cq1-Wl-Uvv" secondAttribute="trailing" id="IHi-3o-rTP"/>
-                            <constraint firstItem="j3Z-wn-PrY" firstAttribute="centerX" secondItem="uN9-KT-Dd5" secondAttribute="centerX" id="IuO-u7-uiY"/>
                             <constraint firstItem="Cq1-Wl-Uvv" firstAttribute="leading" secondItem="g6r-6n-HTp" secondAttribute="trailing" constant="8" id="Ju0-uf-1z3"/>
                             <constraint firstItem="g6r-6n-HTp" firstAttribute="leading" secondItem="urd-Nk-nfd" secondAttribute="trailing" constant="1" id="JvM-x6-MyV"/>
                             <constraint firstItem="urd-Nk-nfd" firstAttribute="trailing" secondItem="iiJ-5W-6lI" secondAttribute="trailing" id="KSH-dM-H4Q"/>
                             <constraint firstItem="iiJ-5W-6lI" firstAttribute="top" secondItem="urd-Nk-nfd" secondAttribute="bottom" constant="5" id="MRF-ex-VVl"/>
+                            <constraint firstItem="P4H-QK-QxV" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="16" id="MeN-Pc-yHa"/>
                             <constraint firstItem="8cu-fe-CP5" firstAttribute="leading" secondItem="iiJ-5W-6lI" secondAttribute="trailing" constant="1" id="Oer-9o-shZ"/>
-                            <constraint firstItem="Cq1-Wl-Uvv" firstAttribute="top" secondItem="uN9-KT-Dd5" secondAttribute="bottom" constant="9" id="Q9H-Fw-iXg"/>
                             <constraint firstAttribute="bottom" secondItem="9sL-4N-u7z" secondAttribute="bottom" constant="20" id="UHd-bs-AxK"/>
                             <constraint firstItem="iiJ-5W-6lI" firstAttribute="leading" secondItem="LGs-Go-Z9h" secondAttribute="trailing" constant="8" id="VS7-Wx-PJR"/>
                             <constraint firstItem="urd-Nk-nfd" firstAttribute="leading" secondItem="iiJ-5W-6lI" secondAttribute="leading" id="XLN-71-jHa"/>
-                            <constraint firstItem="j3Z-wn-PrY" firstAttribute="centerY" secondItem="uN9-KT-Dd5" secondAttribute="centerY" id="YrL-J4-aML"/>
-                            <constraint firstAttribute="trailing" secondItem="uN9-KT-Dd5" secondAttribute="trailing" constant="20" id="ctc-M2-yat"/>
                             <constraint firstItem="urd-Nk-nfd" firstAttribute="leading" secondItem="IHn-k5-Ats" secondAttribute="trailing" constant="8" id="dWX-5T-rDb"/>
                             <constraint firstItem="g6r-6n-HTp" firstAttribute="top" secondItem="urd-Nk-nfd" secondAttribute="top" id="fbz-26-n6e"/>
                             <constraint firstItem="IHn-k5-Ats" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="27" id="g21-SF-tt3"/>
                             <constraint firstItem="8cu-fe-CP5" firstAttribute="bottom" secondItem="iiJ-5W-6lI" secondAttribute="bottom" id="gb8-ao-hdy"/>
-                            <constraint firstItem="uN9-KT-Dd5" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="20" id="hIY-fu-PgG"/>
                             <constraint firstItem="Bgk-BG-Lxa" firstAttribute="top" secondItem="Cq1-Wl-Uvv" secondAttribute="bottom" constant="9" id="hY1-fI-veD"/>
+                            <constraint firstItem="j3Z-wn-PrY" firstAttribute="centerX" secondItem="m2S-Jp-Qdl" secondAttribute="centerX" id="jvr-vf-z8p"/>
+                            <constraint firstItem="IHn-k5-Ats" firstAttribute="top" secondItem="P4H-QK-QxV" secondAttribute="bottom" constant="5" id="llT-ML-eeg"/>
+                            <constraint firstItem="g6r-6n-HTp" firstAttribute="top" secondItem="P4H-QK-QxV" secondAttribute="bottom" constant="2" id="ocg-Vw-7Vi"/>
+                            <constraint firstItem="P4H-QK-QxV" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="16" id="pgV-0c-FMm"/>
+                            <constraint firstAttribute="trailing" secondItem="P4H-QK-QxV" secondAttribute="trailing" constant="16" id="qQa-Pl-rDU"/>
                             <constraint firstItem="Bgk-BG-Lxa" firstAttribute="leading" secondItem="8cu-fe-CP5" secondAttribute="trailing" constant="8" id="vfV-X9-5lJ"/>
                             <constraint firstAttribute="bottom" secondItem="Bgk-BG-Lxa" secondAttribute="bottom" constant="23" id="wLN-h0-ExN"/>
                         </constraints>
@@ -297,7 +313,7 @@
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <userDefaultsController representsSharedInstance="YES" id="NJI-hH-NWl"/>
             </objects>
-            <point key="canvasLocation" x="131.5" y="710"/>
+            <point key="canvasLocation" x="146.5" y="714"/>
         </scene>
     </scenes>
 </document>

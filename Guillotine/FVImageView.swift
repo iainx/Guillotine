@@ -10,8 +10,6 @@ import Cocoa
 
 /// An NSImageView subclass which stores the filename of the image dropped onto it
 class FVImageView: NSImageView {
-
-    var droppedImageFilePath: String? = nil
     var sliceSize: CGSize? {
         didSet {
             if sliceSize!.width == 0 || sliceSize!.height == 0 {
@@ -51,35 +49,5 @@ class FVImageView: NSImageView {
                 CGContextStrokePath(context)
             }
         }
-    }
-
-    override func performDragOperation(sender: NSDraggingInfo) -> Bool {
-        let acceptsDrag = super.performDragOperation(sender)
-        
-        if acceptsDrag {
-            let pboard = sender.draggingPasteboard()
-            guard let plist = pboard.stringForType(NSFilenamesPboardType) else {
-                return false
-            }
-            
-            guard let plistData = plist.dataUsingEncoding(NSUTF8StringEncoding) else {
-                return false
-            }
-            
-            do {
-                let files = try NSPropertyListSerialization.propertyListWithData(plistData, options: NSPropertyListReadOptions.Immutable, format: nil)
-                
-                if files.count == 1 {
-                    droppedImageFilePath = String (files[0])
-                } else {
-                    droppedImageFilePath = nil;
-                    return false
-                }
-            } catch {
-                return false
-            }
-        }
-        
-        return acceptsDrag
     }
 }
