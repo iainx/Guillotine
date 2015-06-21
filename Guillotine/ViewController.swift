@@ -13,14 +13,32 @@ class ViewController: NSViewController {
     @IBOutlet weak var imageView: FVImageView!
     @IBOutlet weak var widthTextField: NSTextField!
     @IBOutlet weak var heightTextField: NSTextField!
+    @IBOutlet weak var xOffsetTextField: NSTextField!
+    @IBOutlet weak var yOffsetTextField: NSTextField!
     
     @IBOutlet weak var dropLabel: NSTextField!
     @IBOutlet weak var sliceButton: NSButton!
     
     @IBOutlet weak var widthStepper: NSStepper!
     @IBOutlet weak var heightStepper: NSStepper!
+    @IBOutlet weak var xOffsetStepper: NSStepper!
+    @IBOutlet weak var yOffsetStepper: NSStepper!
     @IBOutlet weak var summaryLabel: NSTextField!
     @IBOutlet weak var outputLabel: NSTextField!
+    
+    var offsetX = 0 {
+        didSet {
+            updateSummary()
+            updateSliceGrid()
+        }
+    }
+    
+    var offsetY = 0 {
+        didSet {
+            updateSummary()
+            updateSliceGrid()
+        }
+    }
     
     var sliceWidth = 64 {
         didSet {
@@ -48,6 +66,8 @@ class ViewController: NSViewController {
     override func awakeFromNib() {
         widthStepper.enabled = false
         heightStepper.enabled = false
+        xOffsetStepper.enabled = false
+        yOffsetStepper.enabled = false
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "imageDropped:", name: kNewImageDroppedNotification, object: nil)
     }
@@ -72,8 +92,13 @@ class ViewController: NSViewController {
         self.dropLabel.hidden = true
         self.widthTextField.enabled = true
         self.heightTextField.enabled = true
+        self.xOffsetTextField.enabled = true
+        self.yOffsetTextField.enabled = true
         self.widthStepper.enabled = true
         self.heightStepper.enabled = true
+        self.xOffsetStepper.enabled = true
+        self.yOffsetStepper.enabled = true
+        
         self.sliceButton.enabled = true
         
         maxWidth = Int (image.size.width)
@@ -94,6 +119,7 @@ class ViewController: NSViewController {
     
     func updateSliceGrid () {
         imageView.sliceSize = CGSize (width: sliceWidth, height: sliceHeight)
+        imageView.sliceOffset = CGPoint (x: offsetX, y: offsetY)
     }
     
     func updateSummary () {
@@ -146,7 +172,7 @@ class ViewController: NSViewController {
         
         for row in 0 ..< rows {
             for column in 0 ..< columns {
-                let imageRect = NSRect (x: column * sliceWidth, y: row * sliceHeight, width: sliceWidth, height: sliceHeight)
+                let imageRect = NSRect (x: offsetX + (column * sliceWidth), y: offsetY + (row * sliceHeight), width: sliceWidth, height: sliceHeight)
                 
                 guard let cgImage = image.CGImageForProposedRect(nil, context: nil, hints: nil)?.takeUnretainedValue(),
                       let newCGImage = CGImageCreateWithImageInRect(cgImage, imageRect)else {

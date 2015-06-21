@@ -18,6 +18,12 @@ class FVImageView: NSImageView {
         }
     }
     
+    var sliceOffset: CGPoint? {
+        didSet {
+            needsDisplay = true
+        }
+    }
+    
     override func drawRect(dirtyRect: NSRect) {
         super.drawRect(dirtyRect)
 
@@ -25,20 +31,28 @@ class FVImageView: NSImageView {
             return
         }
         
+        var xOffset: CGFloat = 0.0;
+        var yOffset: CGFloat = 0.0;
+        
+        if let offset = sliceOffset {
+            xOffset = offset.x
+            yOffset = offset.y
+        }
+
         let size = frame.size
         let columns = (size.width / slices.width)
         let rows = (size.height / slices.height)
         
         NSColor.lightGrayColor().setStroke()
         
-        for row in 1..<Int(rows) {
-            let y = size.height - (CGFloat(row) * slices.height)
-            NSBezierPath.strokeLineFromPoint(NSPoint(x: 0.0, y: y), toPoint: NSPoint (x: size.width, y: y))
+        for var row = 0; row <= Int(rows); row++ {
+            let y = size.height - (yOffset + CGFloat(row) * slices.height)
+            NSBezierPath.strokeLineFromPoint(NSPoint(x: xOffset, y: y), toPoint: NSPoint (x: size.width - xOffset, y: y))
         }
         
-        for column in 1...Int(columns) {
-            let x = (CGFloat(column) * slices.width)
-            NSBezierPath.strokeLineFromPoint(NSPoint(x: x, y: 0.0), toPoint: NSPoint (x: x, y: size.height))
+        for var column = 0; column <= Int(columns); column++ {
+            let x = xOffset + (CGFloat(column) * slices.width)
+            NSBezierPath.strokeLineFromPoint(NSPoint(x: x, y: yOffset), toPoint: NSPoint (x: x, y: size.height - yOffset))
         }
     }
 }
